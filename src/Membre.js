@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { Component, Fragment } from 'react';
 import './App.js'
 
 
-const Membre = (props) => {
-    const name = props.name;
+
+const Membre = ({ name, children, age }) => {
 
     return (
-        <h2>Membre de ma famille : {name.toUpperCase()}</h2>
+        <fragment>
+            <h2>Membre de ma famille : {name.toUpperCase()} : {age} </h2>
+            {children ? <p>description: {children}</p> : <Fragment />}
+        </fragment>
     )
 }
 

@@ -3,11 +3,12 @@ import './App.js'
 
 
 
-const Membre = ({ name, children, age, cacherNom }) => {
+const Membre = ({ name, children, age, cacherNom, handleChange }) => {
 
     return (
         <fragment>
             <h2 style={{ backgroundColor: age < 26 ? '#7E5920' : '#FFC15E', color: age < 26 ? '#22333B' : '#5E503F' }}>Membre de ma famille : {name.toUpperCase()} : {age} </h2>
+            <input value={name} onChange={handleChange} type="text" />
             <button onClick={cacherNom}>X</button>
             {children ? <p>description: {children}</p> : <Fragment />}
 

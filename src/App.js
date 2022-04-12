@@ -32,10 +32,11 @@ class App extends Component {
     famille.membre1.age += param
     this.setState({ famille })
   }
-  handleChange = (e) => {
+  handleChange = (e, id) => {
+    //les trois petit point s'apelle le spread opérator
     const famille = { ...this.state.famille }
     const name = e.target.value
-    famille.membre1.name = name
+    famille[id].name = name
     this.setState({ famille })
   }
   handleShowDescription = () => {
@@ -67,15 +68,22 @@ class App extends Component {
 
     const liste = Object.keys(famille).map(membre => (
       <Membre
+        key={membre}
+        handleChange={e => this.handleChange(e, membre)}
+        cacherNom={() => this.cacherNom(membre)}
         age={famille[membre].age}
-        name={famille[membre].name} />
+        name={famille[membre].name}
+      />
 
     ))
+
+
+
     console.log(liste);
     return (
       <div className="App">
         <h1>{titre}</h1> {/*this.props.titre devient titre suite a la destructuration*/}
-        <input type="texte" value={famille.membre1.name} onChange={this.handleChange} />
+
         {liste}
         {description}
         <button onClick={this.handleShowDescription}>
